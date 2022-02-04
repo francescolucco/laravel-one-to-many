@@ -27,8 +27,7 @@
                  <th scope="row">{{$post->id}}</th>
                  <td>{{$post->title}}</td>
 
-
-
+                {{-- Se passi in rassegna gli oggetti e non lo trovi, perchè ti manca il collegamento, allora passa avanti, altrimenti entra e prendi il name --}}
                  @if ($post->category)
                     <td>{{$post->category->name}}</td>
                  @else
@@ -58,12 +57,27 @@
           {{$posts->links()}}
         </div>
       </div>
+
+
+      
       <div>
-        <h2>HTML</h2>
-        <ul>
-          <li></li>
-        </ul>
+        @foreach ($categories as $category)
+          <h2>{{$category->name}}</h2>
+          <ul>
+              @forelse ($category->posts as $post_category)
+              <li>
+                <a href="{{route('admin.posts.show', $post_category)}}">{{$post_category->title}}</a>
+              </li>
+              @empty
+              <li>
+                Nessun post presente
+              </li>
+              @endforelse
+          </ul>
+        @endforeach
       </div>
+
+
 </div>
 @endsection
 

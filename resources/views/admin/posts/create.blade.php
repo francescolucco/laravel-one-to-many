@@ -42,13 +42,28 @@
                <label for="description" class="form-label @error('description')
                is-invalid
             @enderror">Contenuto</label>
-               <textarea class="form-control" id="description" name="description" rows="3">{{old('description')}}</textarea>
+            <textarea class="form-control" id="description" name="description" rows="3">{{old('description')}}</textarea>
+            
+            @error('description')
+            <div id="validationServer05Feedback" class="invalid-feedback">
+               {{$error}}
+            </div>
+            @enderror
+            
+            <div class="my-3">
+               <label for="category" class="form-label">Seleziona una categoria:</label>
+               <select name="category_id" id="category_id" class="form-control" >
+                  <option selected>Selezionare una categoria</option>
+                  @foreach ($categories as $category)
+                     <option 
+                     @if ($category->id == old('category_id'))
+                     selected
+                      @endif                     
+                        value="{{$category->id}}">{{$category->name}}</option>
+                  @endforeach
+               </select>
+            </div>
 
-               @error('description')
-               <div id="validationServer05Feedback" class="invalid-feedback">
-                  {{$error}}
-                </div>
-               @enderror
             </div>
             
             

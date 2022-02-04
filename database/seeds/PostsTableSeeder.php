@@ -13,7 +13,7 @@ class PostsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($c=0; $c < 10; $c++){
+        for($c=0; $c < 100; $c++){
             
             $new_post = new Post();
             
